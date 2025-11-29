@@ -19,8 +19,7 @@ A lightweight, single-purpose countdown timer built with pure JavaScript. Featur
 
 ## Screenshots
 
-*Add screenshots here*
-
+![](https://github.com/user-attachments/assets/0b13ca14-de46-4b20-9707-141c45018138)
 ## Quick Start
 
 ### Option 1: Direct Download
