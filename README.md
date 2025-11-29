@@ -17,7 +17,8 @@ A lightweight, single-purpose web tool built with pure JavaScript. Features a cl
 
 ## Screenshots
 
-*Add screenshots here*
+![](https://github.com/user-attachments/assets/1112bb87-120f-4a9c-83af-ade3c76e2b34)
+![](https://github.com/user-attachments/assets/cfab482c-1739-420f-9250-7bc4f9c0089e)
 
 ## Quick Start
 
@@ -133,7 +134,6 @@ minimalist-timer/
 ├── index.html          # Single-file application
 ├── README.md           # This file
 ├── LICENSE             # MIT License
-└── screenshots/        # Screenshots for documentation
 ```
 
 ## Customization
