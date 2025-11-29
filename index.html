@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer & Counter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      padding: 1rem;
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Main Layout - 3 column grid for ads */
+    .container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr minmax(320px, 800px) 1fr;
+      gap: 1rem;
+      padding: 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Ad Slots */
+    .ad-slot {
+      background: #1a1a1a;
+      border: 1px dashed #333;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.875rem;
+      min-height: 250px;
+    }
+
+    .ad-slot.left { grid-column: 1; }
+    .ad-slot.right { grid-column: 3; }
+
+    /* Tool Container */
+    .tool {
+      grid-column: 2;
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab:hover {
+      color: #fff;
+    }
+
+    .tab.active {
+      color: #fff;
+      border-bottom-color: #4a9eff;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Display */
+    .display {
+      font-size: 4rem;
+      font-weight: 300;
+      text-align: center;
+      margin: 2rem 0;
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .counter-display {
+      font-size: 5rem;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    button {
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: #4a9eff;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #3a8eef;
+    }
+
+    .btn-secondary {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: #3a3a3a;
+    }
+
+    .btn-danger {
+      background: #ff4a4a;
+      color: #fff;
+    }
+
+    .btn-danger:hover {
+      background: #ef3a3a;
+    }
+
+    /* Timer Input */
+    .timer-input {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .timer-input input {
+      width: 70px;
+      padding: 0.75rem;
+      font-size: 1.25rem;
+      text-align: center;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .timer-input span {
+      color: #888;
+      font-size: 1.25rem;
+    }
+
+    /* Counter Controls */
+    .counter-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .counter-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      
+      .ad-slot.left,
+      .ad-slot.right {
+        grid-column: 1;
+        min-height: 100px;
+      }
+      
+      .tool {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .display {
+        font-size: 3rem;
+      }
+      
+      .counter-display {
+        font-size: 4rem;
+      }
+      
+      button {
+        padding: 0.75rem 1.5rem;
+      }
+    }
+
+    /* Bottom Ad */
+    .ad-bottom {
+      background: #1a1a1a;
+      border-top: 1px solid #2a2a2a;
+      padding: 1rem;
+      text-align: center;
+      color: #666;
+      font-size: 0.875rem;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Timer & Counter Tool</h1>
+  </header>
+
+  <div class="container">
+    <!-- Left Ad Slot -->
+    <aside class="ad-slot left">
+      Ad Space (160×600)
+    </aside>
+
+    <!-- Main Tool -->
+    <main class="tool">
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" data-tab="timer">Timer</button>
+        <button class="tab" data-tab="counter">Counter</button>
+      </div>
+
+      <!-- Timer Tab -->
+      <div class="tab-content active" id="timer">
+        <div class="timer-input">
+          <input type="number" id="hours" min="0" max="99" value="0" placeholder="00">
+          <span>:</span>
+          <input type="number" id="minutes" min="0" max="59" value="5" placeholder="00">
+          <span>:</span>
+          <input type="number" id="seconds" min="0" max="59" value="0" placeholder="00">
+        </div>
+        
+        <div class="display" id="timer-display">05:00</div>
+        
+        <div class="controls">
+          <button class="btn-primary" id="timer-start">Start</button>
+          <button class="btn-secondary" id="timer-pause">Pause</button>
+          <button class="btn-danger" id="timer-reset">Reset</button>
+        </div>
+      </div>
+
+      <!-- Counter Tab -->
+      <div class="tab-content" id="counter">
+        <div class="display counter-display" id="counter-display">0</div>
+        
+        <div class="counter-controls">
+          <button class="btn-danger counter-btn" id="counter-minus">−</button>
+          <button class="btn-primary counter-btn" id="counter-plus">+</button>
+        </div>
+        
+        <div class="controls">
+          <button class="btn-secondary" id="counter-reset">Reset</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Ad Slot -->
+    <aside class="ad-slot right">
+      Ad Space (160×600)
+    </aside>
+  </div>
+
+  <!-- Bottom Ad -->
+  <div class="ad-bottom">
+    Ad Space (728×90 or Responsive)
+  </div>
+
+  <script>
+    // Tab System
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.dataset.tab;
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(tc => tc.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+      });
+    });
+
+    // Timer Logic
+    let timerInterval = null;
+    let timeLeft = 300; // 5 minutes in seconds
+    let isTimerRunning = false;
+
+    const hoursInput = document.getElementById('hours');
+    const minutesInput = document.getElementById('minutes');
+    const secondsInput = document.getElementById('seconds');
+    const timerDisplay = document.getElementById('timer-display');
+    const timerStart = document.getElementById('timer-start');
+    const timerPause = document.getElementById('timer-pause');
+    const timerReset = document.getElementById('timer-reset');
+
+    function formatTime(totalSeconds) {
+      const hrs = Math.floor(totalSeconds / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+      
+      if (hrs > 0) {
+        return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimerDisplay() {
+      timerDisplay.textContent = formatTime(timeLeft);
+    }
+
+    function getInputTime() {
+      const h = parseInt(hoursInput.value) || 0;
+      const m = parseInt(minutesInput.value) || 0;
+      const s = parseInt(secondsInput.value) || 0;
+      return h * 3600 + m * 60 + s;
+    }
+
+    timerStart.addEventListener('click', () => {
+      if (!isTimerRunning) {
+        if (timeLeft === 0) {
+          timeLeft = getInputTime();
+        }
+        
+        if (timeLeft > 0) {
+          isTimerRunning = true;
+          timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+            
+            if (timeLeft === 0) {
+              clearInterval(timerInterval);
+              isTimerRunning = false;
+              alert('Timer finished!');
+            }
+          }, 1000);
+        }
+      }
+    });
+
+    timerPause.addEventListener('click', () => {
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+      }
+    });
+
+    timerReset.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      timeLeft = getInputTime();
+      updateTimerDisplay();
+    });
+
+    [hoursInput, minutesInput, secondsInput].forEach(input => {
+      input.addEventListener('change', () => {
+        if (!isTimerRunning) {
+          timeLeft = getInputTime();
+          updateTimerDisplay();
+        }
+      });
+    });
+
+    // Counter Logic
+    let count = 0;
+    const counterDisplay = document.getElementById('counter-display');
+    const counterPlus = document.getElementById('counter-plus');
+    const counterMinus = document.getElementById('counter-minus');
+    const counterReset = document.getElementById('counter-reset');
+
+    function updateCounterDisplay() {
+      counterDisplay.textContent = count;
+    }
+
+    counterPlus.addEventListener('click', () => {
+      count++;
+      updateCounterDisplay();
+    });
+
+    counterMinus.addEventListener('click', () => {
+      count--;
+      updateCounterDisplay();
+    });
+
+    counterReset.addEventListener('click', () => {
+      count = 0;
+      updateCounterDisplay();
+    });
+
+    // Initialize
+    updateTimerDisplay();
+  </script>
+</body>
+</html>
