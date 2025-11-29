@@ -1,14 +1,17 @@
-# Minimalist Timer Counter
+# Minimalist Timer
 
-A lightweight, single-purpose web tool built with pure JavaScript. Features a clean design with an ad-ready architecture that doesn't compromise user experience.
+A lightweight, single-purpose countdown timer built with pure JavaScript. Features a clean design with an ad-ready architecture that doesn't compromise user experience.
 
 ## Features
 
-- ⏱️ **Timer** - Set custom countdown timers with hours, minutes, and seconds
+- ⏱️ **Countdown Timer** - Set custom timers with hours, minutes, and seconds
+- 🔔 **Smart Notifications** - Browser notifications when timer reaches zero
+- 🔊 **Audio Alerts** - Pleasant beep sounds using Web Audio API
 - 📱 **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile
 - 🎨 **Dark Mode Design** - Easy on the eyes with modern aesthetics
 - 💰 **Ad-Ready Architecture** - Strategic ad placement without hurting UX
 - 🚀 **Zero Dependencies** - Pure HTML, CSS, and JavaScript
+- 🪶 **Ultra Lightweight** - Single HTML file (~7KB)
 
 ## Demo
 
@@ -16,7 +19,7 @@ A lightweight, single-purpose web tool built with pure JavaScript. Features a cl
 
 ## Screenshots
 
-![](https://github.com/user-attachments/assets/326f941f-3565-483f-91fd-ec6ade64a122)
+*Add screenshots here*
 
 ## Quick Start
 
@@ -40,11 +43,19 @@ cd minimalist-timer
 
 ## Usage
 
-### Timer
-1. Set your desired time using the input fields (hours:minutes:seconds)
-2. Click **Start** to begin countdown
+### Setting Up a Timer
+1. Enter your desired time using the input fields (hours:minutes:seconds)
+2. Click **Start** to begin the countdown
 3. Click **Pause** to temporarily stop
 4. Click **Reset** to return to your set time
+
+### Notifications
+The timer will notify you when it reaches zero through:
+- **Browser Notification** - System notification (you'll be asked for permission on first use)
+- **Audio Alert** - Two pleasant beep sounds
+- **Pop-up Alert** - Visual confirmation message
+
+> **Note:** For browser notifications to work, you must grant permission when prompted on your first interaction with the page.
 
 ## Ad Integration
 
@@ -84,34 +95,40 @@ This tool is designed to be easily duplicated for other single-purpose utilities
 
 2. **Update the header**
    ```html
-   <header h1>Your New Tool Name</h1>
+   <header><h1>Your New Tool Name</h1></header>
    ```
 
-3. **Modify tabs** (optional - keep tabs for multiple modes or remove for single function)
-
-4. **Replace tool content**
+3. **Replace tool content**
    - Update the `.tool` section with your new UI
-   - Modify the JavaScript logic
-   - Keep the same ad slot structure
+   - Modify the JavaScript logic for your tool's functionality
+   - Keep the same ad slot structure for consistency
 
-5. **Test responsiveness** on different devices
+4. **Test responsiveness** on different devices
 
 ### Example Tool Ideas
-- Pomodoro Timer
-- Stopwatch
+- Pomodoro Timer (add work/break cycles)
+- Stopwatch (count up instead of down)
 - Word Counter
 - Unit Converter
 - Random Number Generator
 - Color Picker
 - Password Generator
+- BMI Calculator
 
 ## Browser Support
 
-- Chrome (latest)
+Works on all modern browsers that support:
+- Web Audio API
+- Notification API
+- ES6+ JavaScript
+
+**Tested on:**
+- Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)
-- Edge (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
+
+**Note:** Notification permissions must be granted by the user for system notifications to work.
 
 ## Technology Stack
 
@@ -159,9 +176,13 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, ...;
 
 ## Performance
 
-- **File Size**: ~8KB (uncompressed)
+- **File Size**: ~7KB (uncompressed)
 - **Load Time**: < 100ms on average connection
 - **No External Dependencies**: Instant loading, no CDN delays
+- **Browser APIs Used**: 
+  - Web Audio API for sound notifications
+  - Notification API for system alerts
+  - No external audio files required
 
 ## Contributing
 
