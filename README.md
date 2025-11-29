@@ -1,11 +1,10 @@
-# Minimalist Timer & Counter
+# Minimalist Timer Counter
 
 A lightweight, single-purpose web tool built with pure JavaScript. Features a clean design with an ad-ready architecture that doesn't compromise user experience.
 
 ## Features
 
 - ⏱️ **Timer** - Set custom countdown timers with hours, minutes, and seconds
-- 🔢 **Counter** - Simple increment/decrement counter with reset
 - 📱 **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile
 - 🎨 **Dark Mode Design** - Easy on the eyes with modern aesthetics
 - 💰 **Ad-Ready Architecture** - Strategic ad placement without hurting UX
@@ -17,7 +16,6 @@ A lightweight, single-purpose web tool built with pure JavaScript. Features a cl
 
 ## Screenshots
 
-![](https://github.com/user-attachments/assets/1112bb87-120f-4a9c-83af-ade3c76e2b34)
 ![](https://github.com/user-attachments/assets/cfab482c-1739-420f-9250-7bc4f9c0089e)
 
 ## Quick Start
@@ -47,11 +45,6 @@ cd minimalist-timer
 2. Click **Start** to begin countdown
 3. Click **Pause** to temporarily stop
 4. Click **Reset** to return to your set time
-
-### Counter
-1. Click **+** to increment
-2. Click **−** to decrement
-3. Click **Reset** to return to zero
 
 ## Ad Integration
 
