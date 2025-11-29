@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timer & Counter</title>
+  <title>Timer/Counter</title>
   <style>
     * {
       margin: 0;
@@ -193,23 +193,6 @@
       font-size: 1.25rem;
     }
 
-    /* Counter Controls */
-    .counter-controls {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .counter-btn {
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
-      padding: 0;
-      border-radius: 50%;
-    }
-
     /* Mobile Responsive */
     @media (max-width: 1024px) {
       .container {
@@ -258,7 +241,7 @@
 </head>
 <body>
   <header>
-    <h1>Timer & Counter Tool</h1>
+    <h1>Timer/Counter Tool</h1>
   </header>
 
   <div class="container">
@@ -293,21 +276,6 @@
           <button class="btn-danger" id="timer-reset">Reset</button>
         </div>
       </div>
-
-      <!-- Counter Tab -->
-      <div class="tab-content" id="counter">
-        <div class="display counter-display" id="counter-display">0</div>
-        
-        <div class="counter-controls">
-          <button class="btn-danger counter-btn" id="counter-minus">−</button>
-          <button class="btn-primary counter-btn" id="counter-plus">+</button>
-        </div>
-        
-        <div class="controls">
-          <button class="btn-secondary" id="counter-reset">Reset</button>
-        </div>
-      </div>
-    </main>
 
     <!-- Right Ad Slot -->
     <aside class="ad-slot right">
@@ -415,32 +383,6 @@
           updateTimerDisplay();
         }
       });
-    });
-
-    // Counter Logic
-    let count = 0;
-    const counterDisplay = document.getElementById('counter-display');
-    const counterPlus = document.getElementById('counter-plus');
-    const counterMinus = document.getElementById('counter-minus');
-    const counterReset = document.getElementById('counter-reset');
-
-    function updateCounterDisplay() {
-      counterDisplay.textContent = count;
-    }
-
-    counterPlus.addEventListener('click', () => {
-      count++;
-      updateCounterDisplay();
-    });
-
-    counterMinus.addEventListener('click', () => {
-      count--;
-      updateCounterDisplay();
-    });
-
-    counterReset.addEventListener('click', () => {
-      count = 0;
-      updateCounterDisplay();
     });
 
     // Initialize
