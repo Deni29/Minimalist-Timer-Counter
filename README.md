@@ -13,7 +13,7 @@ A lightweight, single-purpose web tool built with pure JavaScript. Features a cl
 
 ## Demo
 
-[Live Demo](#) *(Add your GitHub Pages link here)*
+[Live Demo](https://minimalist-timer-counter.vercel.app/) *(Add your GitHub Pages link here)*
 
 ## Screenshots
 
