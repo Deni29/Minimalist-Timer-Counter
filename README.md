@@ -16,7 +16,7 @@ A lightweight, single-purpose web tool built with pure JavaScript. Features a cl
 
 ## Screenshots
 
-![](https://github.com/user-attachments/assets/cfab482c-1739-420f-9250-7bc4f9c0089e)
+![](https://github.com/user-attachments/assets/326f941f-3565-483f-91fd-ec6ade64a122)
 
 ## Quick Start
 
